@@ -1,13 +1,36 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+const originalPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err);
+}
 Vue.use(VueRouter)
-
+import Layout from '@/components/layout/index.vue'
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/views/Home.vue')
+    redirect: '/login',
+    name:'login',
+    component:Layout,
+    children:[
+        {
+            path:'/death',
+            component: () => import('@/views/life-death/index.vue'),
+        },
+        {
+            path: '/home',
+            component: () => import('@/views/home/index.vue'),
+        },
+        {
+            path: '/test',
+            component: () => import('@/components/test.vue'),
+        },
+    ]
+  },
+  {
+      path: '/login',
+      component: () => import('@/views/login/index.vue'),
   },
   {
     path: '/about',
