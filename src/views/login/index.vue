@@ -35,6 +35,7 @@
 </template>
 
 <script>
+ import { login } from "@/api/login"
 export default {
   components: {},
   data() {
@@ -57,20 +58,22 @@ export default {
   //监控data中的数据变化
   watch: {},
   created() {
-    console.log("-----");
   },
   mounted() {},
   methods: {
     // 登录
     login() {
-        this.$refs.ruleForm.validate((valid) => {
+        this.$refs.ruleForm.validate(async (valid) => {
           if (valid) {
-            if(this.ruleForm.admin == 'admin' && this.ruleForm.pass == '123456') {
-                this.$message.success('登录成功');
-                this.$router.push({path:'/home'})
-            } else {
-                this.$message.error('账号密码错误');
-            }
+              const params = {
+                  username:this.ruleForm.admin,
+                  password:this.ruleForm.pass
+              }
+              const { code,message } = await login(params);
+              if(code === 200) {
+                  this.$message.success(message);
+                  this.$router.push({path:'/home'});
+              }
           } else {
             console.log('error submit!!');
             return false;
@@ -85,7 +88,7 @@ export default {
 <style lang="scss" scoped>
 .login {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
