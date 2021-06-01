@@ -17,6 +17,7 @@
     "express": "^4.17.1",
     "express-art-template": "^1.0.1",
     "express-session": "^1.16.2",
+    "forever": "^3.0.4",
     "koa-bodyparser": "^4.3.0",
     "md5": "^2.2.1",
     "mongoose": "^5.6.4",

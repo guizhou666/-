@@ -8,7 +8,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-
+app.get('/api/test',(req,res) => {
+    res.send({
+        msg:'success'
+    })
+})
 
 // 登录
 let login = require('./api/login');

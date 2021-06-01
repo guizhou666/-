@@ -6,9 +6,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import "./assets/css/iconfont.css";
 import * as echarts from 'echarts'
+import axios from 'axios'
 Vue.config.productionTip = false
 
-
+Vue.prototype.$http = axios
 Vue.prototype.$echarts = echarts
 Vue.use(ElementUI);
 new Vue({

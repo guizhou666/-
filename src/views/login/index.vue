@@ -58,6 +58,7 @@ export default {
   //监控data中的数据变化
   watch: {},
   created() {
+      this._test();
   },
   mounted() {},
   methods: {
