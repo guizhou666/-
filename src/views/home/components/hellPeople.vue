@@ -1,6 +1,7 @@
 <template>
   <div class="container" ref="container">
-    <div id="myChart2" :style="{ width: echartWidth, height: '300px' }"></div>
+    <!-- <div id="myChart2" :style="{ width: echartWidth, height: '300px' }"></div> -->
+    <dv-active-ring-chart :config="config" :style="{ height: '300px' }" />
   </div>
 </template>
 
@@ -10,6 +11,34 @@ export default {
   data() {
     return {
       echartWidth: "",
+      config: {
+        data: [
+          {
+            name: "周口",
+            value: 55,
+          },
+          {
+            name: "南阳",
+            value: 120,
+          },
+          {
+            name: "西峡",
+            value: 78,
+          },
+          {
+            name: "驻马店",
+            value: 66,
+          },
+          {
+            name: "新乡",
+            value: 80,
+          },
+        ],
+        digitalFlopStyle: {
+          fontSize: 25,
+          fill: "#cccccc",
+        },
+      },
     };
   },
   computed: {},
@@ -17,7 +46,7 @@ export default {
   watch: {},
   created() {},
   mounted() {
-    this._initEchart();
+    // this._initEchart();
     this.echartWidth = this.$refs.container.clientWidth * 0.7 + "px";
   },
   methods: {
@@ -73,4 +102,8 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.container ::v-deep .dv-active-ring-chart .active-ring-info .active-ring-name {
+  color: #cccccc !important;
+}
+</style>
